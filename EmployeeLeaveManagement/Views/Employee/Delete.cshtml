@@ -1,0 +1,38 @@
+﻿@model EmployeeLeaveManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Deactivate Employee";
+}
+
+<h2>Deactivate Employee</h2>
+
+<div class="alert alert-warning">
+    Are you sure you want to deactivate this employee?
+</div>
+
+<p>
+    <strong>Name:</strong>
+    @Model.EmployeeName
+</p>
+
+<p>
+    <strong>Department:</strong>
+    @Model.Department?.DepartmentName
+</p>
+
+<form asp-action="DeleteConfirmed" method="post">
+
+    <input type="hidden"
+           asp-for="EmployeeId" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Yes, Deactivate
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

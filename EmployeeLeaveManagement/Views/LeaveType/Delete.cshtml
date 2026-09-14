@@ -1,0 +1,42 @@
+﻿@model EmployeeLeaveManagement.Models.LeaveType
+
+@{
+    ViewData["Title"] = "Deactivate Leave Type";
+}
+
+<h2>Deactivate Leave Type</h2>
+
+<div class="alert alert-warning">
+    Are you sure you want to deactivate this leave type?
+</div>
+
+<p>
+    <strong>Leave Type:</strong>
+    @Model.LeaveTypeName
+</p>
+
+<p>
+    <strong>Total Days:</strong>
+    @Model.TotalDays
+</p>
+
+<form method="post"
+      action="/LeaveType/DeleteConfirmed">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden"
+           name="id"
+           value="@Model.LeaveTypeId" />
+
+    <button type="submit"
+            class="btn btn-danger">
+        Yes, Deactivate
+    </button>
+
+    <a href="/LeaveType"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

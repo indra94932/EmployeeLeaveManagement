@@ -1,0 +1,81 @@
+﻿@model IEnumerable<EmployeeLeaveManagement.Models.LeaveType>
+
+@{
+    ViewData["Title"] = "Leave Types";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2>Leave Type Management</h2>
+
+    <a asp-action="Create"
+       class="btn btn-primary">
+        Add Leave Type
+    </a>
+
+</div>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Leave Type ID</th>
+            <th>Leave Type</th>
+            <th>Total Days</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var leaveType in Model)
+        {
+            <tr>
+
+                <td>
+                    @leaveType.LeaveTypeId
+                </td>
+
+                <td>
+                    @leaveType.LeaveTypeName
+                </td>
+
+                <td>
+                    @leaveType.TotalDays
+                </td>
+
+                <td>
+                    @(leaveType.IsActive
+                        ? "Active"
+                        : "Inactive")
+                </td>
+
+                <td>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@leaveType.LeaveTypeId"
+                       class="btn btn-sm btn-warning">
+                        Edit
+                    </a>
+
+                    <a asp-action="Details"
+                       asp-route-id="@leaveType.LeaveTypeId"
+                       class="btn btn-sm btn-info">
+                        Details
+                    </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@leaveType.LeaveTypeId"
+                       class="btn btn-sm btn-danger">
+                        Deactivate
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<EmployeeLeaveManagement.Models.LeaveApplication>
+
+@{
+    ViewData["Title"] = "Leave Applications";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2>Leave Applications</h2>
+
+    <a asp-action="Create"
+       class="btn btn-primary">
+        Apply Leave
+    </a>
+
+</div>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Leave Type</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Days</th>
+            <th>Status</th>
+            <th>Applied Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var leave in Model)
+        {
+            <tr>
+
+                <td>
+                    @leave.Employee?.EmployeeName
+                </td>
+
+                <td>
+                    @leave.LeaveType?.LeaveTypeName
+                </td>
+
+                <td>
+                    @leave.FromDate.ToString("dd-MM-yyyy")
+                </td>
+
+                <td>
+                    @leave.ToDate.ToString("dd-MM-yyyy")
+                </td>
+
+                <td>
+                    @leave.NumberOfDays
+                </td>
+
+                <td>
+                    @leave.Status
+                </td>
+
+                <td>
+                    @leave.AppliedDate.ToString("dd-MM-yyyy HH:mm")
+                </td>
+
+                <td>
+                    <a asp-action="Details"
+                       asp-route-id="@leave.LeaveApplicationId"
+                       class="btn btn-sm btn-info">
+                        Details
+                    </a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

@@ -1,0 +1,181 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="text-center mb-5">
+
+    <h1 class="display-5">
+        Employee Leave Management System
+    </h1>
+
+    <p class="lead">
+        Manage employees, leave applications and approvals
+        from one place.
+    </p>
+
+</div>
+
+@if (User.Identity?.IsAuthenticated == true)
+{
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="row">
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card shadow h-100">
+
+                    <div class="card-body text-center">
+
+                        <h4>Employee Management</h4>
+
+                        <p>
+                            Add, edit and manage employees.
+                        </p>
+
+                        <a asp-controller="Employee"
+                           asp-action="Index"
+                           class="btn btn-primary">
+
+                            Manage Employees
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card shadow h-100">
+
+                    <div class="card-body text-center">
+
+                        <h4>Leave Applications</h4>
+
+                        <p>
+                            View all employee leave applications.
+                        </p>
+
+                        <a asp-controller="Leave"
+                           asp-action="Index"
+                           class="btn btn-primary">
+
+                            View Leaves
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <div class="card shadow h-100">
+
+                    <div class="card-body text-center">
+
+                        <h4>Leave Approval</h4>
+
+                        <p>
+                            Approve or reject pending leaves.
+                        </p>
+
+                        <a asp-controller="LeaveApproval"
+                           asp-action="Index"
+                           class="btn btn-success">
+
+                            Manage Approvals
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+    @if (User.IsInRole("Employee"))
+    {
+        <div class="row justify-content-center">
+
+            <div class="col-md-5 mb-4">
+
+                <div class="card shadow">
+
+                    <div class="card-body text-center">
+
+                        <h4>Apply for Leave</h4>
+
+                        <p>
+                            Submit a new leave application.
+                        </p>
+
+                        <a asp-controller="Leave"
+                           asp-action="Create"
+                           class="btn btn-primary">
+
+                            Apply Leave
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-5 mb-4">
+
+                <div class="card shadow">
+
+                    <div class="card-body text-center">
+
+                        <h4>My Leaves</h4>
+
+                        <p>
+                            View your leave applications.
+                        </p>
+
+                        <a asp-controller="Leave"
+                           asp-action="Index"
+                           class="btn btn-info">
+
+                            View My Leaves
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+}
+else
+{
+    <div class="text-center">
+
+        <p>
+            Please login to access the system.
+        </p>
+
+        <a asp-controller="Account"
+           asp-action="Login"
+           class="btn btn-primary">
+
+            Login
+
+        </a>
+
+    </div>
+}

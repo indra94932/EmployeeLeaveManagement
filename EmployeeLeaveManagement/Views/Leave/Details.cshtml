@@ -1,0 +1,82 @@
+﻿@model EmployeeLeaveManagement.Models.LeaveApplication
+
+@{
+    ViewData["Title"] = "Leave Application Details";
+}
+
+<h2>Leave Application Details</h2>
+
+<hr />
+
+<dl class="row">
+
+    <dt class="col-sm-3">
+        Employee
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Employee?.EmployeeName
+    </dd>
+
+    <dt class="col-sm-3">
+        Leave Type
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.LeaveType?.LeaveTypeName
+    </dd>
+
+    <dt class="col-sm-3">
+        From Date
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.FromDate.ToString("dd-MM-yyyy")
+    </dd>
+
+    <dt class="col-sm-3">
+        To Date
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.ToDate.ToString("dd-MM-yyyy")
+    </dd>
+
+    <dt class="col-sm-3">
+        Number of Days
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.NumberOfDays
+    </dd>
+
+    <dt class="col-sm-3">
+        Reason
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Reason
+    </dd>
+
+    <dt class="col-sm-3">
+        Status
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.Status
+    </dd>
+
+    <dt class="col-sm-3">
+        Applied Date
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.AppliedDate.ToString("dd-MM-yyyy HH:mm")
+    </dd>
+
+</dl>
+
+<a asp-action="Index"
+   class="btn btn-secondary">
+    Back
+</a>

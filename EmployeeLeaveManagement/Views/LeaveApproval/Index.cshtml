@@ -1,0 +1,139 @@
+﻿@model IEnumerable<EmployeeLeaveManagement.Models.LeaveApplication>
+
+@{
+    ViewData["Title"] = "Leave Approval";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Leave Approval</h2>
+
+    <a href="/Leave"
+       class="btn btn-secondary">
+        Back to Leave Applications
+    </a>
+</div>
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Leave Type</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Days</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th>Applied Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var leave in Model)
+        {
+            <tr>
+
+                <td>
+                    @leave.Employee?.EmployeeName
+                </td>
+
+                <td>
+                    @leave.LeaveType?.LeaveTypeName
+                </td>
+
+                <td>
+                    @leave.FromDate.ToString("dd-MM-yyyy")
+                </td>
+
+                <td>
+                    @leave.ToDate.ToString("dd-MM-yyyy")
+                </td>
+
+                <td>
+                    @leave.NumberOfDays
+                </td>
+
+                <td>
+                    @leave.Reason
+                </td>
+
+                <td>
+                    @if (leave.Status == "Pending")
+                    {
+                        <span class="badge bg-warning text-dark">
+                            Pending
+                        </span>
+                    }
+                    else if (leave.Status == "Approved")
+                    {
+                        <span class="badge bg-success">
+                            Approved
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">
+                            Rejected
+                        </span>
+                    }
+                </td>
+
+                <td>
+                    @leave.AppliedDate.ToString("dd-MM-yyyy HH:mm")
+                </td>
+
+                <td>
+
+                    @if (leave.Status == "Pending")
+                    {
+                        <form method="post"
+                              action="/LeaveApproval/Approve"
+                              style="display:inline;">
+
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden"
+                                   name="id"
+                                   value="@leave.LeaveApplicationId" />
+
+                            <button type="submit"
+                                    class="btn btn-sm btn-success">
+                                Approve
+                            </button>
+
+                        </form>
+
+                        <form method="post"
+                              action="/LeaveApproval/Reject"
+                              style="display:inline;">
+
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden"
+                                   name="id"
+                                   value="@leave.LeaveApplicationId" />
+
+                            <button type="submit"
+                                    class="btn btn-sm btn-danger">
+                                Reject
+                            </button>
+
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="text-muted">
+                            Completed
+                        </span>
+                    }
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>

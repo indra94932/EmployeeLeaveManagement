@@ -1,0 +1,67 @@
+﻿@model EmployeeLeaveManagement.Models.LeaveType
+
+@{
+    ViewData["Title"] = "Add Leave Type";
+}
+
+<h2>Add Leave Type</h2>
+
+<hr />
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger">
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="LeaveTypeName"
+               class="form-label">
+        </label>
+
+        <input asp-for="LeaveTypeName"
+               class="form-control" />
+
+        <span asp-validation-for="LeaveTypeName"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label asp-for="TotalDays"
+               class="form-label">
+        </label>
+
+        <input asp-for="TotalDays"
+               type="number"
+               class="form-control" />
+
+        <span asp-validation-for="TotalDays"
+              class="text-danger">
+        </span>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label>
+            <input asp-for="IsActive" />
+            Active
+        </label>
+
+    </div>
+
+    <button type="submit"
+            class="btn btn-success">
+        Save
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

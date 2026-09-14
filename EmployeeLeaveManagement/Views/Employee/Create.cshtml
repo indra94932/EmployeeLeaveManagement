@@ -1,0 +1,124 @@
+﻿@model EmployeeLeaveManagement.Models.Employee
+
+@{
+    ViewData["Title"] = "Add Employee";
+}
+
+<h2>Add Employee</h2>
+
+<hr />
+
+<form asp-action="Create" method="post">
+
+    <div asp-validation-summary="ModelOnly"
+         class="text-danger">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EmployeeName"
+               class="form-label">
+        </label>
+
+        <input asp-for="EmployeeName"
+               class="form-control" />
+
+        <span asp-validation-for="EmployeeName"
+              class="text-danger">
+        </span>
+    </div>
+
+
+    <div class="mb-3">
+        <label asp-for="Email"
+               class="form-label">
+        </label>
+
+        <input asp-for="Email"
+               class="form-control" />
+
+        <span asp-validation-for="Email"
+              class="text-danger">
+        </span>
+    </div>
+
+
+    <div class="mb-3">
+        <label asp-for="Phone"
+               class="form-label">
+        </label>
+
+        <input asp-for="Phone"
+               class="form-control" />
+
+        <span asp-validation-for="Phone"
+              class="text-danger">
+        </span>
+    </div>
+
+
+    <div class="mb-3">
+
+        <label asp-for="DepartmentId"
+               class="form-label">
+        </label>
+
+        <select asp-for="DepartmentId"
+                class="form-select">
+
+            <option value="">
+                -- Select Department --
+            </option>
+
+            @foreach (var department in ViewBag.Departments)
+            {
+                <option value="@department.DepartmentId">
+                    @department.DepartmentName
+                </option>
+            }
+
+        </select>
+
+        <span asp-validation-for="DepartmentId"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label asp-for="DateOfJoining"
+               class="form-label">
+        </label>
+
+        <input asp-for="DateOfJoining"
+               class="form-control" />
+
+        <span asp-validation-for="DateOfJoining"
+              class="text-danger">
+        </span>
+
+    </div>
+
+
+    <div class="mb-3">
+
+        <label>
+            <input asp-for="IsActive" />
+            Active
+        </label>
+
+    </div>
+
+
+    <button type="submit"
+            class="btn btn-success">
+        Save
+    </button>
+
+    <a asp-action="Index"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>

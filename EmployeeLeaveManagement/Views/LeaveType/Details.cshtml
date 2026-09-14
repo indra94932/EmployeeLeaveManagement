@@ -1,0 +1,56 @@
+﻿@model EmployeeLeaveManagement.Models.LeaveType
+
+@{
+    ViewData["Title"] = "Leave Type Details";
+}
+
+<h2>Leave Type Details</h2>
+
+<hr />
+
+<dl class="row">
+
+    <dt class="col-sm-3">
+        Leave Type ID
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.LeaveTypeId
+    </dd>
+
+    <dt class="col-sm-3">
+        Leave Type
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.LeaveTypeName
+    </dd>
+
+    <dt class="col-sm-3">
+        Total Days
+    </dt>
+
+    <dd class="col-sm-9">
+        @Model.TotalDays
+    </dd>
+
+    <dt class="col-sm-3">
+        Status
+    </dt>
+
+    <dd class="col-sm-9">
+        @(Model.IsActive ? "Active" : "Inactive")
+    </dd>
+
+</dl>
+
+<a asp-action="Edit"
+   asp-route-id="@Model.LeaveTypeId"
+   class="btn btn-warning">
+    Edit
+</a>
+
+<a asp-action="Index"
+   class="btn btn-secondary">
+    Back
+</a>
